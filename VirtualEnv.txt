@@ -15,5 +15,4 @@ dependencies:
 #  'vs2008_runtime=9.00.30729.1=2'
 - !!python/unicode
   'wheel=0.29.0=py27_0'
-prefix: !!python/unicode 'C:\Users\murde_000\Anaconda\envs\VirtualEnvSB'
 
