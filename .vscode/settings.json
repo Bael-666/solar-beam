@@ -1,4 +1,4 @@
 // Coloque su configuración en este archivo para sobrescribir la configuración predeterminada y de usuario.
 {
-    "python.pythonPath": "${workspaceRoot}/VirtualEnv/python.exe"
+    "python.pythonPath": "/home/saitama/anaconda2/envs/VirtualEnvSB/bin/python"
 }
