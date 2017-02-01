@@ -1,0 +1,4 @@
+#.gitignore SolarBeam v1.0
+
+.vscode/settings.py
+*.pyc
