@@ -21,12 +21,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': path.join(PROJECT_ROOT, 'db.sqlite3'),
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Subasta_2016',
+        'USER': 'solarbeam_app',
+        'PASSWORD': 'Murder666',
+        'HOST': 'solarbeam.com.mx',
+        'PORT': '3306',
     }
 }
 
