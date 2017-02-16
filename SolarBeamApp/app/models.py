@@ -74,7 +74,7 @@ class Anexo2Factordesesp(models.Model):
     e = models.IntegerField(db_column='E')  # Field name made lowercase.
     c = models.IntegerField(db_column='C')  # Field name made lowercase.
     i = models.DecimalField(db_column='I', max_digits=10, decimal_places=8)  # Field name made lowercase.
-    id = models.DecimalField(db_column='ID', max_digits=10, decimal_places=8)  # Field name made lowercase.
+    iden = models.DecimalField(db_column='ID', max_digits=10, decimal_places=8)  # Field name made lowercase.
     t = models.DecimalField(db_column='T', max_digits=10, decimal_places=8)  # Field name made lowercase.
     umbral_sener = models.DecimalField(db_column='UMBRAL_SENER', max_digits=10, decimal_places=8)  # Field name made lowercase.
     tcusd = models.DecimalField(db_column='TCUSD', max_digits=10, decimal_places=8)  # Field name made lowercase.
@@ -146,7 +146,7 @@ class Anexo2Regionof(models.Model):
     region = models.IntegerField(db_column='REGION', blank=True, null=True)  # Field name made lowercase.
     nombrereg = models.TextField(db_column='NOMBREREG', blank=True, null=True)  # Field name made lowercase.
     limene = models.IntegerField(db_column='LIMENE', blank=True, null=True)  # Field name made lowercase.
-    id = models.IntegerField(db_column='ID', blank=True, null=True)  # Field name made lowercase.
+    iden = models.IntegerField(db_column='ID', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -167,7 +167,7 @@ class Anexo2Zonaof(models.Model):
     sistemainter = models.IntegerField(db_column='SISTEMAINTER', blank=True, null=True)  # Field name made lowercase.
     nombrezon = models.TextField(db_column='NOMBREZON', blank=True, null=True)  # Field name made lowercase.
     limeeae = models.IntegerField(db_column='LIMEEAE', blank=True, null=True)  # Field name made lowercase.
-    id = models.IntegerField(db_column='ID', blank=True, null=True)  # Field name made lowercase.
+    iden = models.IntegerField(db_column='ID', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -175,7 +175,7 @@ class Anexo2Zonaof(models.Model):
 
 
 class Anexo2Zprecio(models.Model):
-    id = models.IntegerField(db_column='ID', blank=True, null=True)  # Field name made lowercase.
+    iden = models.IntegerField(db_column='ID', blank=True, null=True)  # Field name made lowercase.
     pml = models.FloatField(db_column='PML', blank=True, null=True)  # Field name made lowercase.
     nombre = models.TextField(db_column='NOMBRE', blank=True, null=True)  # Field name made lowercase.
 
