@@ -1,0 +1,10 @@
+{% if whiskas %}
+    <ul>
+    {% for i in whiskas %}
+        <li>{{ i.animal }}</li>
+        <li>{{ i.cost }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay rutas.</p>
+{% endif %}

@@ -22,3 +22,13 @@ class Demanda(models.Model):
     tiend = models.ForeignKey(Tienda)
     def __str__(self):
         return self.ruta
+
+class Whiskas(models.Model):
+    animal = models.CharField(max_length=200)
+    prot = models.FloatField(default = 0)
+    cost = models.FloatField(default = 0)
+    fat = models.FloatField(default = 0)
+    fibre = models.FloatField(default = 0)
+    salt = models.FloatField(default = 0)
+    def __str__(self):
+        return self.animal

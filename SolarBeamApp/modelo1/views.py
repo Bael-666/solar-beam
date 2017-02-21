@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Demanda, Fabrica, Tienda
+from .models import Demanda, Fabrica, Tienda, Whiskas
 
 
 def index(request):
@@ -11,3 +11,8 @@ def index(request):
     context = {'rutas': rutas}
     return render(request, 'modelo1/index.html', context)
 
+def whiskas(request):
+    whiskas = Whiskas.objects.order_by('cost')
+    #whisk = whisk.main(whikas)
+    context = {'whiskas': whiskas}
+    return render(request, 'modelo1/whiskas.html', context)
