@@ -1,10 +1,14 @@
 {% if whiskas %}
-    <ul>
     {% for i in whiskas %}
+    <ul>
         <li>{{ i.animal }}</li>
         <li>{{ i.cost }}</li>
+        <li>{{ i.prot }}</li>
+        <li>{{ i.fat }}</li>
+        <li>{{ i.fibre }}</li>
+        <li>{{ i.salt }}</li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No hay rutas.</p>
+    <p>No hay comida</p>
 {% endif %}
