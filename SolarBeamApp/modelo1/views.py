@@ -1,9 +1,13 @@
 from django.shortcuts import render
 
-# Create your views here.
-
-from django.http import HttpResponse
+from .models import Demanda, Fabrica, Tienda
 
 
 def index(request):
-    return HttpResponse("Aqui nos rifamos como se debe.")
+    rutas = Demanda.objects.order_by('costo')
+    fabricas = Fabrica.objects.order_by('produccion')
+    tiendas = Tienda.objects.order_by('demand')
+    #modelo = modelo.main(rutas, fabricas, tiendas)
+    context = {'rutas': rutas}
+    return render(request, 'modelo1/index.html', context)
+

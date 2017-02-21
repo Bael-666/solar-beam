@@ -1,0 +1,9 @@
+{% if rutas %}
+    <ul>
+    {% for i in rutas %}
+        <li><a href="/modelo1/{{ i.id }}/">{{ i.ruta }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay rutas.</p>
+{% endif %}
