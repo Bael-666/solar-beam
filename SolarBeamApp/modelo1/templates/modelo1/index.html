@@ -1,9 +1,13 @@
-{% if rutas %}
+{% if modelo %}
+<p>
     <ul>
-    {% for i in rutas %}
-        <li><a href="/modelo1/{{ i.id }}/">{{ i.ruta }}</a></li>
-    {% endfor %}
+        <li>{{ status }}</li>
+        <li>{{ fob }}</li>
+        {% for j in modelo.variables %}
+            <li>{{ j.name }} {{ j.varValue }}</li>
+        {% endfor %} 
     </ul>
+</p>
 {% else %}
-    <p>No hay rutas.</p>
+    <p>No hay comida</p>
 {% endif %}

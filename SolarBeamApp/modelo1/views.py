@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from pulp import *
 from .models import Demanda, Fabrica, Tienda, Whiskas
-import whisky
+import whisky, model
 
 def index(request):
-    rutas = Demanda.objects.order_by('costo')
-    fabricas = Fabrica.objects.order_by('produccion')
-    tiendas = Tienda.objects.order_by('demand')
-    #modelo = modelo.main(rutas, fabricas, tiendas)
-    context = {'rutas': rutas}
+    rutas = Demanda.objects.all()
+    fabricas = Fabrica.objects.all()
+    tiendas = Tienda.objects.all()
+    modelo = model.main(rutas, fabricas, tiendas)
+    fob = value(modelo.objective)
+    status = LpStatus[modelo.status]
+    context = {'rutas': rutas, 'modelo': modelo, 'fob': fob, 'status': status}
     return render(request, 'modelo1/index.html', context)
 
 def whiskas(request):
