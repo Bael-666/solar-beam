@@ -150,6 +150,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     'modelo1.apps.Modelo1Config',
+    'SLP15.apps.Slp15Config',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

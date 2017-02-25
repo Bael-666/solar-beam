@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from pulp import *
-from .models import Demanda, Fabrica, Tienda, Whiskas
 import whisky, model
+from .models import Demanda, Fabrica, Tienda, Whiskas
+
 
 def index(request):
     rutas = Demanda.objects.all()
