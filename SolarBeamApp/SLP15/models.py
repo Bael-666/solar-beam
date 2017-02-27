@@ -37,7 +37,7 @@ class Erc(models.Model):
         return str(self.id)
 #@python_2_unicode_compatible
 class CentralOv(models.Model):
-    gen = models.ForeignKey(Gen)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    gen = models.IntegerField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
     paquetes = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
     central = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
     def __str__(self):

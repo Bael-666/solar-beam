@@ -21,12 +21,12 @@ def main(paqgen, ofererc, central, centrales, centralov, paqin, paqexc, paquetes
     # 2 Restriccion de compra de potencia por sistema interconectado en fecha irregular anterior                                                                                      
     for i in sistemainter:
         prob += lpSum([j.gpot*Up[j]*j.firrant for j in paqgen 
-                                                   if i.sistemainter == j.sint]) >= lpSum([DemP[k]*k.fechairrantp for k in ofererc 
+                                                   if i.sistemainter == j.sint]) <= lpSum([DemP[k]*k.fechairrantp for k in ofererc 
                                                                                           if i.sistemainter == k.sinterc])
     # 3 Restriccion de compra de potencia por sistema interconectado en fecha irregular anterior
     for i in sistemainter:
         prob += lpSum([j.gpot*Up[j]*j.firrdes for j in paqgen 
-                                        if i.sistemainter == j.sint]) >= lpSum([DemP[k]*k.fechairrdespp for k in ofererc 
+                                        if i.sistemainter == j.sint]) <= lpSum([DemP[k]*k.fechairrdespp for k in ofererc 
                                                                           if i.sistemainter == k.sinterc])
 
     # 4 restriccion de compra de energia electrica acumulable
@@ -36,10 +36,10 @@ def main(paqgen, ofererc, central, centrales, centralov, paqin, paqexc, paquetes
     prob += lpSum([j.gcel*Up[j] for j in paqgen]) >= lpSum([DemC[k] for k in ofererc]), "CEL %s"%j
 
     # 6 restriccion de compra de certificados de energia limpia en fecha irregular anterior
-    prob += lpSum([j.gcel*Up[j]*j.firrant for j in paqgen]) >= lpSum([DemC[k]*k.fechairrantc for k in ofererc]), "CEL fecha irregular anterior %s"%j
+    prob += lpSum([j.gcel*Up[j]*j.firrant for j in paqgen]) <= lpSum([DemC[k]*k.fechairrantc for k in ofererc]), "CEL fecha irregular anterior %s"%j
 
     # 7 restriccion de compra de certificados de energia limpia en fecha irregular posterior
-    prob += lpSum([j.gcel*Up[j]*j.firrdes for j in paqgen]) >= lpSum([DemC[k]*k.fechairrantc for k in ofererc]), "CEL fecha irregular posterior %s"%j
+    prob += lpSum([j.gcel*Up[j]*j.firrdes for j in paqgen]) <= lpSum([DemC[k]*k.fechairrantc for k in ofererc]), "CEL fecha irregular posterior %s"%j
     
     # 8 restriccion de compra de Potencia
     for j in ofererc:
@@ -54,8 +54,10 @@ def main(paqgen, ofererc, central, centrales, centralov, paqin, paqexc, paquetes
         prob += DemC[j] <= j.dcel
 
     # 11 OFERTAS CONDICIONADAS
+    print paqgen
+    print Up
     for i in paqin:
-        prob += Up[i[0]] <= Up[i[1]], "Paquetes condicionados %s"%i
+        prob += Up[i[0]] <= Up[i[1]]
 
     # 12 OFERTAS CONDICIONADAS
     for i in conpaqexc:
@@ -63,7 +65,7 @@ def main(paqgen, ofererc, central, centrales, centralov, paqin, paqexc, paquetes
                                             if j[0] == i.conpaqexc]) <= 1
     # 13 Centrales Aceptadas y paquetes aceptados
     for i in centralov:
-        prob += Up[i[0]] <= Uc[i[1]], "Centrales aceptadas %s"%i
+        prob += Up[i[0]] <= Uc[i[1]]
     
     # 14 Limite de potencia puntos de interconexion
     for i in nodoof:

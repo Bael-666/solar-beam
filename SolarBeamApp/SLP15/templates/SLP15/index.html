@@ -4,7 +4,9 @@
         <li>{{ status }}</li>
         <li>{{ fob }}</li>
         {% for j in slp2015.variables %}
-            <li>{{ j.name }} {{ j.varValue }}</li>
+            {% if j.varValue > 0 %}
+                <li>{{ j.name }} {{ j.varValue }} </li>
+            {% endif %}
         {% endfor %} 
     </ul>
 </p>

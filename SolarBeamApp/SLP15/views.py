@@ -24,6 +24,6 @@ def index(request):
     slp2015 = SLP2015.main(paqgen, ofererc, central, centrales, centralov2, paqin2, paqexc2, paquetes, paquetes2, ofertas, conpaqexc, nodoof, regionof, zonaof, sistemainter)
     fob = value(slp2015.objective)
     status = LpStatus[slp2015.status]
-    context = {'slp2015': slp2015, 'fob': fob, 'status': status}
+    context = {'slp2015': slp2015, 'fob': fob, 'status': status, 'paqgen': paqgen}
     return render(request, 'SLP15/index.html', context)
 # Create your views here.
