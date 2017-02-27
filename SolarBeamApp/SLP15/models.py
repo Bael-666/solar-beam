@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
 
 from django.db import models
 #@python_2_unicode_compatible
@@ -23,18 +22,22 @@ class Centrales(models.Model):
     zprcen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
     zicen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
     cent_acept = models.TextField(max_length=1, blank=True, null=True)  # Field name made lowercase.
+    uc = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return str(self.id)
+
 #@python_2_unicode_compatible
 class Gen(models.Model):
     gen = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return str(self.id)
+
 #@python_2_unicode_compatible
 class Erc(models.Model):
     erc = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return str(self.id)
+
 #@python_2_unicode_compatible
 class CentralOv(models.Model):
     gen = models.IntegerField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
@@ -42,6 +45,7 @@ class CentralOv(models.Model):
     central = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
     def __str__(self):
         return str(self.id)
+
 #@python_2_unicode_compatible
 class Conpaqexc(models.Model):
     conpaqexc = models.IntegerField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
@@ -80,6 +84,9 @@ class Ofererc(models.Model):
     eeaajus = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
     celajus = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
     ejecucion = models.BigIntegerField(blank=True, null=True)  # Field name made lowercase.
+    demp = models.FloatField(blank=True, null=True) 
+    deme = models.FloatField(blank=True, null=True) 
+    demc = models.FloatField(blank=True, null=True) 
     def __str__(self):
         return str(self.id)
 
@@ -130,8 +137,10 @@ class Paqgen(models.Model):
     zongenf = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
     fechaap = models.TextField(blank=True, null=True)  # Field name made lowercase.
     fechaen = models.TextField(blank=True, null=True)  # Field name made lowercase.
+    up = models.IntegerField(blank=True, null=True) 
     def __str__(self):
         return str(self.id)
+
 #@python_2_unicode_compatible
 class Paqin(models.Model):
     gen = models.IntegerField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.

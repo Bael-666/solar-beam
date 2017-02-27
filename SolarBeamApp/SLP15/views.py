@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from .models import Central, CentralOv, Centrales, Ofererc, Paqgen, Paquetes, Paquetes2, Nodoof, Regionof, Sistemainter, Zonaof, Paqin, Paqexc, Conpaqexc, Ofertas 
-import SLP2015, convert
+import SLP2015, convert, resul
 from pulp import *
 # Create your views here.
 
 def index(request):
+
+    return render(request, 'SLP15/index.html')
+
+def resultados(request):
     central = Central.objects.all()
     centralov = CentralOv.objects.all()
     centrales = Centrales.objects.all()
@@ -21,9 +25,10 @@ def index(request):
     conpaqexc = Conpaqexc.objects.all()
     ofertas = Ofertas.objects.all()
     paqin2, paqexc2, centralov2 = convert.main(paqin, paqexc, centralov, centrales, paqgen)
-    slp2015 = SLP2015.main(paqgen, ofererc, central, centrales, centralov2, paqin2, paqexc2, paquetes, paquetes2, ofertas, conpaqexc, nodoof, regionof, zonaof, sistemainter)
+    slp2015, Up, Uc, DemP, DemC, DemE = SLP2015.main(paqgen, ofererc, central, centrales, centralov2, paqin2, paqexc2, paquetes, paquetes2, ofertas, conpaqexc, nodoof, regionof, zonaof, sistemainter)
+    Upaq, Compra, Ucen = resul.main(paqgen, ofererc, centrales, Up, Uc, DemP, DemC, DemE)
     fob = value(slp2015.objective)
     status = LpStatus[slp2015.status]
-    context = {'slp2015': slp2015, 'fob': fob, 'status': status, 'paqgen': paqgen}
-    return render(request, 'SLP15/index.html', context)
+    context = {'slp2015': slp2015, 'fob': fob, 'status': status, 'paqgen': paqgen, 'Up': Upaq, 'Uc': Ucen, 'Compra': Compra}
+    return render(request, 'SLP15/resultados.html', context)
 # Create your views here.

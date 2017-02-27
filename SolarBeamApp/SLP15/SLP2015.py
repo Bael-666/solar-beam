@@ -2,14 +2,15 @@
 from pulp import *
 
 def main(paqgen, ofererc, central, centrales, centralov, paqin, paqexc, paquetes, paquetes2, ofertas, conpaqexc, nodoof, regionof, zonaof, sistemainter):
+    Upaq = []
     # Create the 'prob' variable to contain the problem data
     prob = LpProblem("Subasta de Largo Plazo 2015", LpMaximize)
     # A dictionary called 'ingredient_vars' is created to contain the referenced Variables
     Up = LpVariable.dicts("Paquetes", paqgen, cat = LpBinary)
     Uc = LpVariable.dicts("Centrales", centrales, cat = LpBinary)
-    DemP = LpVariable.dicts("Compra Potencia", ofererc, lowBound = 0, cat = LpContinuous)
-    DemE = LpVariable.dicts("Compra Energia", ofererc, lowBound = 0,cat = LpContinuous)
-    DemC = LpVariable.dicts("Compra Cel", ofererc, lowBound = 0,cat = LpContinuous)
+    DemP = LpVariable.dicts("CompraP", ofererc, lowBound = 0, cat = LpContinuous)
+    DemE = LpVariable.dicts("CompraE", ofererc, lowBound = 0,cat = LpContinuous)
+    DemC = LpVariable.dicts("CompraC", ofererc, lowBound = 0,cat = LpContinuous)
     # TFuncion objetivo
     prob += lpSum([i.ppot*DemP[i] for i in ofererc]) + lpSum([n.peea*DemE[n] for n in ofererc])  + lpSum([m.pcel*DemC[m] for m in ofererc]) - lpSum([Up[j]*j.nppaq for j in paqgen]), "Maximo excedente economico"
 
@@ -43,19 +44,18 @@ def main(paqgen, ofererc, central, centrales, centralov, paqin, paqexc, paquetes
     
     # 8 restriccion de compra de Potencia
     for j in ofererc:
-         prob += DemP[j] <= j.dpot
+         prob += DemP[j] <= j.potajus
 
     # 9 restriccion de compra de EEA
     for j in ofererc:
-        prob += DemE[j] <= j.deea
+        prob += DemE[j] <= j.eeaajus
 
     # 10 restriccion de compra de CEL
     for j in ofererc:
-        prob += DemC[j] <= j.dcel
+        prob += DemC[j] <= j.celajus
 
     # 11 OFERTAS CONDICIONADAS
-    print paqgen
-    print Up
+
     for i in paqin:
         prob += Up[i[0]] <= Up[i[1]]
 
@@ -83,4 +83,5 @@ def main(paqgen, ofererc, central, centrales, centralov, paqin, paqexc, paquetes
                                           if i.sistemainter == j.sint and i.zona == j.zonin])  <= i.limeeae
     #The problem is solved using PuLP's choice of Solver
     prob.solve()
-    return prob
+
+    return prob, Up, Uc, DemP, DemC, DemE  
