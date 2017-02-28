@@ -4,7 +4,7 @@ def main(paqgen, ofererc, centrales, Up, Uc, DemP, DemC, DemE):
     Ucen = []
     
     for i in paqgen:
- #       if Up[i].value() == 1:
+        if Up[i].value() == 1:
             x1 = int(i.id)
             x2 = int(Up[i].value())
             x3 = int(i.gen)

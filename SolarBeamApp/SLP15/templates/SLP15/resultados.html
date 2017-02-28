@@ -1,22 +1,26 @@
 {% if slp2015 %}
 <p>
-    <ul>
-        <li>{{ status }}</li>
-        <li>{{ fob }}</li>
-        {% for j in Up %}       
-                <li>{{ j }}  </li>
+    <table>
+        <tr><td>{{ status }}</td></tr>
+        <tr><td>{{ fob }}</td></tr>
+        <tr>
+        {% for j in Up %}  
+               
+            <tr>    <td>{{ j }}  </td><tr>
+        
+        {% endfor %}
+        </tr>
+    </table>
+
+    <table>
+        
+        {% for j in Compra %}  
+               
+              <tr><td>{{ j }}  </td></tr>
+              
         {% endfor %} 
-    </ul>
-    <ul>
-        {% for j in Uc %}       
-                <li>{{ j }}  </li>
-        {% endfor %} 
-    </ul>
-    <ul>
-        {% for j in Compra %}       
-                <li>{{ j }}  </li>
-        {% endfor %} 
-    </ul>
+        
+    </table>
 </p>
 {% else %}
     <p>No hay comida</p>

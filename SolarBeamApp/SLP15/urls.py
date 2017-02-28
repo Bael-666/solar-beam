@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^resultados/$', views.resultados, name='resultados'),
+    url(r'^simulador/$', views.simulador, name='simulador'),
 ]

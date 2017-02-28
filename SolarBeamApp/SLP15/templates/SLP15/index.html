@@ -1,15 +1,24 @@
-{% block title %}Video tutorial{% endblock %}
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
 {% block sidebar %}
 
     <p>
+        Subasta sin modificaciones
     <form name = 'entr' onsubmit="return validateForm()" action="resultados/" method="post" >
         {% csrf_token %}
-        {% comment %}
-        1.-Quiero generar <input type="number" step="any" name="demanda" style="width: 6em" value="{{ kwhanor }}" required/> Killowatts-hora (Kwh) &nbsp;en la ciudad de:&nbsp;<select name="Ciudad">
-        {% for i in ciudades %}
-            <option value="{{i.id}}">{{ i.get_Estados_display }}, {{ i.Nombre }}</option>
+    <div class="centrar"><input type="submit" value="Enviar" id="btn_s" /></div>
+        </form>
+    </p>
+<p>
+    Simulador
+    <form name = 'entra' onsubmit="return validateForm()" action="resultados/" method="post" >
+        {% csrf_token %}
+        
+        1.-Quiero generar con una central con Capacidad de <input type="number" step="any" name="demanda" style="width: 6em" value="{{ MW }}" required/> MW &nbsp;en la Region de transmision de:&nbsp;<select name="Region">
+        {% for i in regionof %}
+            <option value="{{i.id}}">{{ i.get_nombrereg_display}} {{ i.nombrereg }}</option>
         {% endfor %}
         </select><br><br>
+        {% comment %}
         2.-Quiero generar esta energía cada:
         {% if per == 0 %}
         <input type="radio" name="ener" value="0" checked/> Mes
@@ -54,5 +63,4 @@
         <div class="centrar"><input type="submit" value="Enviar" id="btn_s" /></div>
         </form>
     </p>
-
 {% endblock %}
