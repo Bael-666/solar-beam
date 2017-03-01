@@ -5,12 +5,23 @@ from pulp import *
 # Create your views here.
 
 def index(request):
-    return render(request, 'SLP15/index.html', context)
+    return render(request, 'SLP15/index.html')
 
 def simulador(request):
     regionof = Regionof.objects.order_by('nombrereg')
     context = {'regionof': regionof}
-    return render(request, 'SLP15/simulador1.html', context)
+    return render(request, 'SLP15/simulador.html', context)
+
+def oferta(request):
+    regionof = Regionof.objects.order_by('nombrereg')
+    region = get_object_or_404(regionof, pk=request.POST['region'])
+    capapl = float(request.POST['capapl'])
+    prelacion = int(request.POST['prelacion'])
+    nombre_cen = str(request.POST['nombre_cen'])
+    cen = Centrales(gen = 500, central = 1, nombre_cen = nombre_cen, prelacion = prelacion, capapl = capapl, zpcen = region.sistemainter, zgcen = region.zona, zprcen = region.region)
+    cen.save()
+    cen.delete()
+    return render(request, 'SLP15/oferta.html')
 
 def resultados(request):
     central = Central.objects.all()
@@ -35,4 +46,4 @@ def resultados(request):
     status = LpStatus[slp2015.status]
     context = {'slp2015': slp2015, 'fob': fob, 'status': status, 'paqgen': paqgen, 'Up': Upaq, 'Uc': Ucen, 'Compra': Compra}
     return render(request, 'SLP15/resultados.html', context)
-# Create your views here.
+

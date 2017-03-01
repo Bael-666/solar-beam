@@ -1,0 +1,22 @@
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% block sidebar %}
+
+    Simulador
+    <form name = 'entra' onsubmit="return validateForm()" action="oferta/" method="post" >
+        {% csrf_token %}
+        
+        1.-Quiero generar con una central con Capacidad de <input type="number" step="any" name="capapl" style="width: 6em" value="{{ capapl }}" required/> MW &nbsp;en la Region de transmision de:&nbsp;<select name="region">
+        {% for i in regionof %}
+            <option value="{{i.id}}">{{ i.get_nombrereg_display}} {{ i.nombrereg }}</option>
+        {% endfor %}
+        </select><br><br>
+        2.- Mi central cuenta con prelación:&nbsp; <select name="prelacion"> 
+                <option value="0">Si</option>
+                <option value="1">No</option>
+                </select><br><br>
+        3.- El nombre de mi central es: <input type="text" step="any" name="nombre_cen" style="width: 10em" value="{{ nombre_cen }}" required/>
+           
+        <div class="centrar"><input type="submit" value="Enviar" id="btn_s" /></div>
+        </form>
+    </p>
+{% endblock %}

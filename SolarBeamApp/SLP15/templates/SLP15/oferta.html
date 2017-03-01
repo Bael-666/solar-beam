@@ -1,0 +1,26 @@
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% block sidebar %}
+
+    Simulador
+    <form name = 'entra' onsubmit="return validateForm()" action="resultados/" method="post" >
+        {% csrf_token %}
+        
+        1.-Quiero ofertar <input type="number" step="any" name="gpot" style="width: 6em" value="{{ gpot }}" required/> MW de Potencia, 
+             <input type="number" step="any" name="geea" style="width: 6em" value="{{ geea }}" required/> MWh de Energia Electrica acumulable y  
+             <input type="number" step="any" name="gcel" style="width: 6em" value="{{ gcel }}" required/> Certificados de energia limpia a un precio anual de 
+             <input type="number" step="any" name="ppaq" style="width: 6em" value="{{ ppaq }}" required/> pesos.
+        <br><br>
+        2.- Los productos se entergarán en: &nbsp;<select name="fecha"> 
+                <option value="0">Fecha estandar</option>
+                <option value="1">Fecha irregular anterior</option>
+                <option value="2">Fecha irregular posterior</option>
+                </select><br><br>
+         3.- El pago será en: &nbsp;<select name="indexusd"> 
+                <option value="0">Pesos</option>
+                <option value="1">Dolares</option>
+                </select><br><br>
+         
+        <div class="centrar"><input type="submit" value="Enviar" id="btn_s" /></div>
+        </form>
+    </p>
+{% endblock %}
