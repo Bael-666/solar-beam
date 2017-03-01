@@ -1,18 +1,45 @@
 name: VirtualEnvSB
 channels:
 - !!python/unicode
+  'conda-forge'
+- !!python/unicode
+  'primer'
+- !!python/unicode
+  'ibmdecisionoptimization'
+- !!python/unicode
+  'anaconda'
+- !!python/unicode
   'defaults'
 dependencies:
 - !!python/unicode
   'django=1.10.5=py27_0'
 - !!python/unicode
+  'mysql-connector-python=2.0.4=py27_0'
+- !!python/unicode
+  'mysql-python=1.2.5=py27_0'
+- !!python/unicode
+  'glpk=4.60=py27_vc9_0'
+- !!python/unicode
+  'biopython=1.68=np112py27_0'
+- !!python/unicode
+  'mkl=2017.0.1=0'
+- !!python/unicode
+  'numpy=1.12.0=py27_0'
+- !!python/unicode
   'pip=9.0.1=py27_1'
 - !!python/unicode
+  'pyparsing=2.1.4=py27_0'
+- !!python/unicode
   'python=2.7.13=0'
-#- !!python/unicode            Sólo para windows
-#  'setuptools=27.2.0=py27_1'
-#- !!python/unicode
-#  'vs2008_runtime=9.00.30729.1=2'
+- !!python/unicode
+  'setuptools=27.2.0=py27_1'
+- !!python/unicode
+  'vs2008_runtime=9.00.30729.5054=0'
 - !!python/unicode
   'wheel=0.29.0=py27_0'
+- !!python/unicode
+  'cplex=12.7=py27_0'
+- !!python/unicode
+  'pulp=1.6.1=py27_0'
+prefix: !!python/unicode 'C:\Users\Edward Newgate\Anaconda2\envs\VirtualEnvSB'
 
