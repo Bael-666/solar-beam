@@ -5,7 +5,7 @@ from pulp import *
 # Create your views here.
 
 def index(request):
-    return render(request, 'SLP15/index.html', context)
+    return render(request, 'SLP15/index.html')
 
 def simulador(request):
     regionof = Regionof.objects.order_by('nombrereg')
