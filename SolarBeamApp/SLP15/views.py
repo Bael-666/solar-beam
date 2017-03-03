@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Central, CentralOv, Centrales, Ofererc, Paqgen, Paquetes, Paquetes2, Nodoof, Regionof, Sistemainter, Zonaof, Paqin, Paqexc, Conpaqexc, Ofertas 
 import SLP2015, convert, resul
 from pulp import *
+from datetime import datetime
 # Create your views here.
 
 def index(request):
@@ -9,7 +10,7 @@ def index(request):
 
 def simulador(request):
     regionof = Regionof.objects.order_by('nombrereg')
-    context = {'regionof': regionof}
+    context = {'regionof': regionof, 'year': datetime.now().year, 'title':'Primera Subasta de Largo Plazo 2015'}
     return render(request, 'SLP15/simulador.html', context)
 
 def oferta(request):

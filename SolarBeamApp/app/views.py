@@ -47,3 +47,17 @@ def about(request):
             'year':datetime.now().year,
         }
     )
+
+def solver(request):
+    """Solver"""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/solver.html',
+        context =
+        {
+            'title':'Solver',
+            'message':'Modelo de la 2a subasta de energ&iacute;a el&eacute;ctrica.',
+            'year':datetime.now().year,
+        }
+    )

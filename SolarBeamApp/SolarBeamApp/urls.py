@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^contact$', contact, name='contact'),
     url(r'^about', about, name='about'),
+    url(r'^solver$', solver, name='solver'),
     url(r'^login$',
         login,
         {
