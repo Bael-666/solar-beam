@@ -40,6 +40,7 @@ urlpatterns = [
         name='logout'),
     url(r'^modelo1/', include('modelo1.urls')),
     url(r'^slp2015/', include('SLP15.urls')),
+    url(r'^tarifas/', include('tarifas.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

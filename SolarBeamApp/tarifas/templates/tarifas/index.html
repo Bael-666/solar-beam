@@ -1,0 +1,15 @@
+{% extends "app/layout.html" %}
+{% block title %}Tarifas Residenciales CFE{% endblock %}
+{% block content %}
+<h1>Ciudades</h1>
+{% for i in ciudades %}
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="{% url 'tarifas:detalles' i.id %}" method="post" >
+    {% csrf_token %}
+    <div class="row form-group">
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <input type="submit" class="form-control btn-primary" value="{{ i.Nombre }}" id="btnSend" />
+        </div>
+    </div>
+</form>
+{% endfor %}
+{% endblock %}

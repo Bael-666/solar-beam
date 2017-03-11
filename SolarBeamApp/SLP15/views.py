@@ -13,7 +13,7 @@ def simulador(request):
     context = {'regionof': regionof, 'year': datetime.now().year, 'title':'Primera Subasta de Largo Plazo 2015'}
     return render(request, 'SLP15/simulador.html', context)
 
-def oferta(request):
+def alta(request):
     regionof = Regionof.objects.order_by('nombrereg')
     region = get_object_or_404(regionof, pk=request.POST['region'])
     capapl = float(request.POST['capapl'])
@@ -22,7 +22,7 @@ def oferta(request):
     cen = Centrales(gen = 500, central = 1, nombre_cen = nombre_cen, prelacion = prelacion, capapl = capapl, zpcen = region.sistemainter, zgcen = region.zona, zprcen = region.region)
     cen.save()
     cen.delete()
-    return render(request, 'SLP15/oferta.html')
+    return render(request, 'SLP15/alta.html')
 
 def resultados(request):
     central = Central.objects.all()

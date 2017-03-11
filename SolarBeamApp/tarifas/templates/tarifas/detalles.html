@@ -1,0 +1,44 @@
+{% extends "app/layout.html" %}
+{% block title %}Tarifas Residenciales CFE{% endblock %}
+{% block content %}
+<h1>Ciudades</h1>
+    {% csrf_token %}
+    <div class="row form-group">
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">1.- Ciudad</span>
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ ciudad.Nombre }}</span>
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">2.- Tarifa</span>
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ ciudad.Tarifa }}</span>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">3.- Mes de inicio de verano</span>
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ ciudad.Verano }}</span>
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">4.- Area de Control</span>
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ ciudad.AreaCont }}</span>
+    </div>
+    {% for i in tarifa %}
+        <div class="row form-group">
+            <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">5.- Nombre</span>
+            <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ i.Nombre }}</span>
+            <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">6.- Precio Basico</span>
+            <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ i.Basico }}</span>
+        </div>
+        <div class="row form-group">
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">7.- Precio Intermedio bajo</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ i.Inter_Bajo }}</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">8.- Precio Intermedio Alto</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ i.Inter_Medio }}</span>
+        </div>
+        <div class="row form-group">
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">9.- Precio Excedente</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ i.Excedente }}</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">10.- Maximo consumo Basico</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ i.CBasico }}</span>
+        </div>
+        <div class="row form-group">
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">11.- Maximo consumo Intermedio Bajo</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ i.Excedente }}</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">12.- Maximo consumo Intermedio Alto</span>
+             <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">{{ i.CBasico }}</span>
+        </div>
+    {% endfor %}
+{% endblock %}

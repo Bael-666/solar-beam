@@ -151,6 +151,7 @@ INSTALLED_APPS = (
     'app',
     'modelo1.apps.Modelo1Config',
     'SLP15.apps.Slp15Config',
+    'tarifas.apps.TarifasConfig',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

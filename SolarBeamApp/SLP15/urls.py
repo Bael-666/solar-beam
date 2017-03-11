@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^resultados/$', views.resultados, name='resultados'),
     url(r'^simulador/$', views.simulador, name='simulador'),
-    url(r'^simulador/oferta/$', views.oferta, name='oferta'),
+    url(r'^simulador/alta/$', views.alta, name='alta'),
 ]
