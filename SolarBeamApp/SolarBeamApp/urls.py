@@ -8,6 +8,7 @@ from app.forms import BootstrapAuthenticationForm
 from app.views import *
 from django.contrib.auth.views import login, logout
 from django.contrib import admin
+from SLP15.views import *
 
 # Uncomment the next lines to enable the admin:
 from django.conf.urls import include
@@ -46,4 +47,5 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    # url(r'^/slp2015/getNode/$', getNode, name="getNode")
 ]
