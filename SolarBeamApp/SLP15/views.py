@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .models import Central, CentralOv, Centrales, Ofererc, Paqgen, Paquetes, Paquetes2, Nodoof, Regionof, Sistemainter, Zonaof, Paqin, Paqexc, Conpaqexc, Ofertas 
-import SLP2015, convert, resul
+import SLP2015, convert, resul, getNodes
 from pulp import *
 from datetime import datetime
+import json
+from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
@@ -48,3 +50,13 @@ def resultados(request):
     context = {'slp2015': slp2015, 'fob': fob, 'status': status, 'paqgen': paqgen, 'Up': Upaq, 'Uc': Ucen, 'Compra': Compra}
     return render(request, 'SLP15/resultados.html', context)
 
+def getNode(request):
+    idRequest = request.body
+    if request.is_ajax():
+        jsonId = json.loads(idRequest)
+        idRegion = jsonId['idRegion']
+        result = getNodes.getNodes(idRegion)
+        return JsonResponse(result)
+    else:
+        html = '<p>This is not ajax</p>'      
+        return HttpResponse(html)
