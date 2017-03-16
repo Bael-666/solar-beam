@@ -56,7 +56,7 @@ def getNode(request):
         jsonId = json.loads(idRequest)
         idRegion = jsonId['idRegion']
         result = getNodes.getNodes(idRegion)
-        return JsonResponse(result)
+        return HttpResponse(result)
     else:
         html = '<p>This is not ajax</p>'      
         return HttpResponse(html)

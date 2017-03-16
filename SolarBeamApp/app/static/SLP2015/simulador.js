@@ -52,7 +52,7 @@ $gmx(document).ready(function() {
                 }
             },
             error: function() {
-                alert("Error, por favor intentar otra vez.");
+                alertType("Error. Por favor intenta elegir otra opci&oacute;n.");
             }
         });
     }
