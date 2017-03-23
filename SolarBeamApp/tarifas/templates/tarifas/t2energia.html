@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+{% block title %}Tarifas Comerciales CFE{% endblock %}
+{% block content %}
+{% load static %}
+
+<h1 align = "center">Pago</h1>
+
+
+
+<div class="row form-group" align = "center">
+            <span class="col-md-4 col-sm-4 col-xs-4 col-lg-4">Costo</span>
+            <span class="col-md-4 col-sm-4 col-xs-4 col-lg-4">Iva</span>
+            <span class="col-md-4 col-sm-4 col-xs-4 col-lg-4">Total</span>
+</div>
+<div class="row form-group" align = "center">
+            <span class="col-md-4 col-sm-4 col-xs-4 col-lg-4">{{ cost }}</span>
+            <span class="col-md-4 col-sm-4 col-xs-4 col-lg-4">{{ iva }}</span>
+            <span class="col-md-4 col-sm-4 col-xs-4 col-lg-4">{{ total }}</span>
+</div>
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="/tarifas/tarifa2/" method="post" >
+    <div class="row form-group" align = "center">
+           
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="submit" class="form-control btn-primary" value="Regresar" id="btnSend" />
+            </div>
+    </div>
+
+{% endblock %}

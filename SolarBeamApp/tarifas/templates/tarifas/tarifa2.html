@@ -1,0 +1,80 @@
+{% extends "app/layout.html" %}
+{% block title %}Tarifas Comerciales CFE{% endblock %}
+{% block content %}
+{% load static %}
+
+<h1 align = "center">Historial de Precios</h1>
+<div class="row form-group" align = "center">
+<img src="{% static "tarifas/tarifa2_hist.png" %}" alt="Grafica"/>
+</div>
+
+
+<div class="row form-group" align = "center">
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Anio</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Primer dia</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Mes</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Ultimo dia</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Mes</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Consumo kWh</span>
+</div>
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="energia/" method="post" >
+    <div class="row form-group" align = "center">
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <select class="form-control" name="anio" id="anio">
+                {% for i in anio %}
+                    <option value="{{i.id}}">{{ i.get_anio_display}} {{ i.Anio }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="number" step="any" id="init" name="init" class="form-control" value="{{ init }}" min="1" required/>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <select class="form-control" name="mes1" id="mes1">
+                {% for i in meses %}
+                    <option value="{{i.id}}">{{ i.get_meses_display}} {{ i.Meses }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="number" step="any" id="ulti" name="ulti" class="form-control" value="{{ ulti }}" min="1" required/>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <select class="form-control" name="mes2" id="mes2">
+                {% for i in meses %}
+                    <option value="{{i.id}}">{{ i.get_meses_display}} {{ i.Meses }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="number" step="any" id="fact" name="fact" class="form-control" value="{{ fact }}" min="0" required/>
+            </div>
+    </div>
+    <div class="row form-group" align = "center">  
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="submit" class="form-control btn-primary" value="Enviar" id="btnSend" />
+            </div>
+    </div>
+<div class="row form-group" align = "center">
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Año</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Mes</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Cargo fijo</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Basico</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Intermedio</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Excedente</span>
+    </div>
+
+{% for i in hist %}
+    {% csrf_token %}
+    <div class="row form-group" align = "center">
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Anio}}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Mes }}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Cargofijo }}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Basico}}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Inter }}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Excedente }}</span>
+            
+    </div>
+
+{% endfor %}
+{% endblock %}

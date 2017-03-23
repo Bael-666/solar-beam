@@ -1,0 +1,45 @@
+{% extends "app/layout.html" %}
+{% load staticfiles %}
+{% block title %}Documentos{% endblock %}
+{% block content %}
+<h1 align = center>Estudio</h1>
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="genestudio/" method="post" >
+        {% csrf_token %}
+<div class="row form-group" align = "center">
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Ahorro primer año</span>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="number" step="any" id="d1" name="d1" class="form-control" value="{{ d1 }}" min="1" required/>
+            </div>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Costo</span>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="number" step="any" id="d2" name="d2" class="form-control" value="{{ d2 }}" min="1" required/>
+            </div>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Numero de paneles</span>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="number" step="any" id="d3" name="d3" class="form-control" value="{{ d3 }}" min="1" required/>
+            </div>
+
+</div>
+
+<div class="row form-group" align = "center">
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Ahorro a 25 años</span>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="number" step="any" id="d4" name="d4" class="form-control" value="{{ d4 }}" min="1" required/>
+            </div>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Numero de inversores</span>
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="number" step="any" id="d5" name="d5" class="form-control" value="{{ d5 }}" min="1" required/>
+            </div>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Nombre del proyecto</span>
+            
+            <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                <input type="string" step="any" id="d6" name="d6" class="form-control" value="{{ d6 }}"  required/>
+            </div>
+</div>
+<div class="row form-group" align = "center">
+           <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <input type="submit" class="form-control btn-primary" value="Generar" id="btnSend" />
+           </div>
+        </div>
+        </form>
+{% endblock %}

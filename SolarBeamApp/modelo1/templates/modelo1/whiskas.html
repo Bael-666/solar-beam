@@ -1,0 +1,28 @@
+{% if whiskas %}
+    {% for i in whiskas %}
+    <ul>
+        <li>{{ i.animal }}</li>
+        <li>{{ i.cost }}</li>
+        <li>{{ i.prot }}</li>
+        <li>{{ i.fat }}</li>
+        <li>{{ i.fibre }}</li>
+        <li>{{ i.salt }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay comida</p>
+{% endif %}
+
+{% if whisk %}
+<p>
+    <ul>
+        <li>{{ status }}</li>
+        <li>{{ fob }}</li>
+        {% for j in whisk.variables %}
+            <li>{{ j.name }} {{ j.varValue }}</li>
+        {% endfor %} 
+    </ul>
+</p>
+{% else %}
+    <p>No hay comida</p>
+{% endif %}

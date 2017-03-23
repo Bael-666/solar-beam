@@ -1,0 +1,16 @@
+{% extends "app/layout.html" %}
+{% block title %}Tarifas de Alto Consumo residencial{% endblock %}
+{% load static %}
+{% block content %}
+<h1 align = "center">Tarifas de Alto Consumo residencial</h1>
+{% for i in Acont %}
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="{% url 'tarifas:dac2' i.id %}" method="post" >
+    {% csrf_token %}
+    <div class="row form-group">
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <input type="submit" class="form-control btn-primary" value="{{ i.AreasControl }}" id="btnSend" />
+        </div>
+    </div>
+</form>
+{% endfor %}
+{% endblock %}

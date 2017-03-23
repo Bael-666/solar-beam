@@ -1,0 +1,206 @@
+{% extends "Ciudades/pruebas.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% block title %}Reporte de dimensionamiento{% endblock %}
+{% block sidebar %}
+
+    <p>
+        <form name = 'entr' onsubmit="return validateForm()" action="/Solarbeam1.0/reporte/" method="post" >
+        {% csrf_token %}
+        1.-Quiero generar <input type="number" step="any" name="demanda" style="width: 6em" value="{{ kwhanor }}" required/> Killowatts-hora (Kwh) &nbsp;en la ciudad de:&nbsp;<select name="Ciudad">
+        {% for i in ciudades %}
+            <option value="{{i.id}}">{{ i.get_Estados_display }}, {{ i.Nombre }}</option>
+        {% endfor %}
+        </select><br><br>
+        2.-Quiero generar esta energía cada:
+        {% if per == 0 %}
+        <input type="radio" name="ener" value="0" checked/> Mes
+        <input type="radio" name="ener" value="1" /> Bimestre
+        <input type="radio" name="ener" value="2" /> Semestre
+        <input type="radio" name="ener" value="3" /> Año<br><br>
+        {% elif per == 1 %}
+        <input type="radio" name="ener" value="0" /> Mes
+        <input type="radio" name="ener" value="1" checked/> Bimestre
+        <input type="radio" name="ener" value="2" /> Semestre
+        <input type="radio" name="ener" value="3" /> Año<br><br>
+        {% elif per == 2 %}
+        <input type="radio" name="ener" value="0" /> Mes
+        <input type="radio" name="ener" value="1" /> Bimestre
+        <input type="radio" name="ener" value="2" checked/> Semestre
+        <input type="radio" name="ener" value="3" /> Año<br><br>
+        {% else %}
+        <input type="radio" name="ener" value="0" /> Mes
+        <input type="radio" name="ener" value="1" /> Bimestre
+        <input type="radio" name="ener" value="2" /> Semestre
+        <input type="radio" name="ener" value="3" checked/> Año<br><br>
+        {% endif %}
+
+        3.-¿Cuándo quiero que haya mayor generación de energía?:&nbsp;
+        {% if tipo == 0 %}
+        <input type="radio" name="tipo" value="1" /> Primavera
+        <input type="radio" name="tipo" value="2" /> Otoño
+        <input type="radio" name="tipo" value="0" checked/>Anual
+        <input type="hidden" name="cable" value='0.99'><br><br>
+        {% elif tipo == 1 %}
+        <input type="radio" name="tipo" value="1" checked/> Primavera
+        <input type="radio" name="tipo" value="2" /> Otoño
+        <input type="radio" name="tipo" value="0" />Anual
+        <input type="hidden" name="cable" value='0.99'><br><br>
+        {% else %}
+        <input type="radio" name="tipo" value="1" /> Primavera
+        <input type="radio" name="tipo" value="2" checked/> Otoño
+        <input type="radio" name="tipo" value="0" />Anual
+        <input type="hidden" name="cable" value='0.99'><br><br>
+        {% endif %}
+
+        4.- Quiero utilizar paneles    
+        <select name="Panel">     
+        {% for i in paneles %}
+            <option value="{{i.id}}">{{ i.get_Marca_display }}{{ i.Marca}}, {{ i.Modelo }}</option>
+        {% endfor %}
+        </select>
+        con un inversores 
+        <select name="Inversor">
+        {% for i in inversores %}
+            <option value="{{i.id}}">{{ i.get_Marca_display }}{{ i.Marca}}, {{ i.Modelo }}</option>
+        {% endfor %}
+        </select><br><br>
+        <div class="centrar"><input type="submit" value="Enviar" id="btn_s" /></div>
+        </form>
+    {% endblock %}
+{% block content %}
+    <section id="contenido1">
+    <section id="princpal">
+    <p style="text-align:left;">
+        Solarbeam 1.0
+        <span style="float:right;">{{ hora.day }}/{{ hora.month }}/{{ hora.year }} a las {{ hora.hour }}:{{ hora.minute }}</span>
+    </p>
+            </section>
+            <section id="pagina2">
+                <h1>Reporte de dimensionamiento fotovoltaico interconectado </h1>
+
+    <table>
+        <tr><td style="padding:25px;"><img src="{% static 'imagenes/Header_03.png' %}" style="max-width:100%;height:auto;"></td><td style="padding:25px;"><img src="{% static 'imagenes/Header_02.png' %}" style="max-width:100%;height:auto;"></td></tr>
+    </table>
+                <section id="pag2x1">
+                <img src="{% static 'imagenes/grafica1.jpg' %}" style="max-width:100%;height:auto; border:1px solid #;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;">
+                </section>
+                <section id="pag2x2">
+                <table id="tabla1">
+                    <tr>
+                            <th rowspan="2"><img src="{% static 'imagenes/Icono_02.png' %}" style="max-width:100%;height:auto;"></th>
+                            <td style="padding-left:15px;">Estado: {{ Ciud.get_Estados_display }}</td>
+                    </tr>
+                    <tr>    <td style="padding-left:15px;">Ciudad: {{ Ciud.Nombre }}</td></tr>
+                    <tr>
+                    <th rowspan="2"><img src="{% static 'imagenes/Icono_05.png' %}" style="max-width:100%;height:auto;"></th>
+                            <td style="padding-left:15px;">{{ ahorroaino | floatformat:-2 |intcomma}}$ pesos ahorrados el primer año*</td>
+                    </tr>
+                    <tr>    <td style="padding-left:15px;">{{ ahorrodosaino | floatformat:-2 |intcomma}}$ pesos ahorrados en los 25 años de garantía del sistema**</td></tr>
+                    <tr>
+                    <th rowspan="2"><img src="{% static 'imagenes/Icono_03.png' %}" style="max-width:100%;height:auto;"></th>
+                        <td style="padding-left:15px;">{{ kwdia | floatformat:-2 |intcomma}} kWh producidos diariamente </td>
+                    </tr>
+                    <tr>    <td style="padding-left:15px;">{{kwhan | floatformat:-2 |intcomma}} kWh producidos anualmente</td></tr>
+                    <tr>
+                    <th rowspan="2"><img src="{% static 'imagenes/Icono_06.png' %}" style="max-width:100%;height:auto;"></th>
+                      <td style="padding-left:15px;">Potencia del sistema de generación: {{ kwf|floatformat:-2 |intcomma }} kWp </td>
+                    </tr>
+                    <tr>  <td style="padding-left:15px;">Número de paneles: {{npan|floatformat}} de {{panel.Wp}} Wp</td>   </tr>
+                    <tr>
+                    <th rowspan="2"><img src="{% static 'imagenes/Icono_04.png' %}" style="max-width:100%;height:auto;"></th>
+                     <td style="padding-left:15px;">Eficiencia de los paneles: 15.37%</td>
+                    </tr>
+                    <tr>    <td style="padding-left:15px;">Eficiencia del sistema: {{ efsist | floatformat:-2 }}%</td>
+                    </tr>
+                     <tr>
+                            <th rowspan="2"><img src="{% static 'imagenes/icono_01.png' %}" style="max-width:100%;height:auto;"></th>
+                            <td style="padding-left:15px;">Se tendrá la mayor producción en{% if tipo == 0 %} todo el año{% elif tipo == 1 %} la primavera {% else %} el otoño{% endif %}</td>
+                    </tr>
+                    <tr>    <td style="padding-left:15px;">Los paneles deberán tener una inclinación de {{ incl| floatformat:0 }} grados</td></tr>
+                     <tr>
+                            <th rowspan="2"><img src="{% static 'imagenes/co2_02.png' %}" style="max-width:100%;height:auto;"></th>
+                            <td style="padding-left:15px;">Se evitará la emisión de  {{ arb1| floatformat:2 }} toneladas de CO2***</td>
+                    </tr>
+                    <tr>    <td style="padding-left:15px;">Equivalente a plantar {{ arb2| floatformat:0 }} árboles****</td></tr>
+                    <tr>
+                            <th rowspan="2"><img src="{% static 'imagenes/co2_02.png' %}" style="max-width:100%;height:auto;"></th>
+                            <td style="padding-left:15px;">Se necesitarán {{ ninver| floatformat:0 }} inversores</td></tr>
+                    <tr>    <td style="padding-left:15px;">Se utilizaran inversores {{ inver.Marca }} {{ inver.Modelo}} de {{ inver.MaxPowAC}} Watts</td></tr>
+                    
+
+
+                </table>
+
+                </section>
+
+            </section>
+
+            <section id="pagina3">
+            {% for i in conex %}
+                <h4>Aspectos generales de la instalación</h4>
+                <table align="center" id="panel">
+                    <tr>
+                        <td id ="estilo1" ></td>
+                        <td id ="estilo1" ></></td>
+                        <td id ="estilo1" ></td>
+                        <td id ="estilo1" ></></td>
+                        <td id ="estilo1" ></td>
+                    </tr>
+
+                    <tr>
+                        <td >Potencia del campo solar: {{ kwf|floatformat:-2 }} kWp</td>
+                        <td >Latitud: {{ incl| floatformat:0 }} grados</td>
+                        <td ># de paneles: {{npan|floatformat}} de {{panel.Wp}} Wp</td>
+                        <td ># de inversores: {{ ninver }} inversor/es de {{inver.MaxPowAC}}kW</td>
+                        <td ># de paneles conectados en serie: {{ i.0 }}</td>
+                    <tr>
+                        <td id ="estilo2" ></td>
+                        <td id ="estilo2" ></></td>
+                        <td id ="estilo2" ></td>
+                        <td id ="estilo2" ></></td>
+                        <td id ="estilo2" ></td>
+                    </tr>
+                    <tr>
+                        <td id ="estilo1" ></td>
+                        <td id ="estilo1" ></></td>
+                        <td id ="estilo1" ></td>
+                        <td id ="estilo1" ></></td>
+                        <td id ="estilo1" ></td>
+                    </tr>
+
+                        <td ># de ramas conectadas en paralelo: {{ i.1 }}</td>
+                        <td >Voltaje en circuito abierto: {{ i.3 }} Voltios</td>
+                        <td >Amperaje en circuito abierto: {{ i.5 }} Amperes</td>
+                        <td >Voltaje de funcionamiento: {{ i.4 }} Voltios</td>
+                        <td >Amperaje de funcionamiento: {{ i.6 }} Amperes</td>
+
+                    </tr>
+                    <tr>
+                        <td id ="estilo2" ></td>
+                        <td id ="estilo2" ></></td>
+                        <td id ="estilo2" ></td>
+                        <td id ="estilo2" ></></td>
+                        <td id ="estilo2" ></td>
+                    </tr>
+
+                </table>
+            {% endfor %}
+            </section>
+
+    </section>
+{% endblock %}
+{% block footer %}
+<table>
+                    <tr>
+                        <td style="padding:0.5em;">*Ahorro con un costo de $3.80 el kWh</td>
+                        <td style="padding:0.5em;">**Ahorro a 25 años con un costo de $3.80 el kWh</td>
+                        <td style="padding:0.5em;">***Se tomo una emisión de 0.65kg por kWh producido</td>
+                        <td style="padding:0.5em;">****Cantidad de árboles con una taza de absorción de 10kg anuales de CO2</td>
+
+                    </tr>
+                </table>
+{% endblock %}

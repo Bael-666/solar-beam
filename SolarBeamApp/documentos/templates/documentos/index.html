@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}
+{% load staticfiles %}
+{% block title %}Documentos{% endblock %}
+{% block content %}
+<h1 align = center>Solarbeam 2</h1>
+        <form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="estudios/" method="post" >
+        {% csrf_token %}
+        <div class="row form-group" align = "center">
+           <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <input type="submit" class="form-control btn-primary" value="Estudio" id="btnSend" />
+           </div>
+        </div>
+        </form>
+{% endblock %}
