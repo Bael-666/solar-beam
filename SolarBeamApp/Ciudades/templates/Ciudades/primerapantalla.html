@@ -1,0 +1,68 @@
+{% extends "Ciudades/pruebas.html" %}
+
+{% block title %}Video tutorial{% endblock %}
+{% block sidebar %}
+    {% if ciudades %}
+    <p>
+    <form name = 'entr' onsubmit="return validateForm()" action="appfinal2/" method="post" >
+        {% csrf_token %}
+        1.-Quiero generar <input type="number" step="any" name="demanda" style="width: 6em" value="{{ kwhanor }}" required/> Killowatts-hora (Kwh) &nbsp;en la ciudad de:&nbsp;<select name="Ciudad">
+        {% for i in ciudades %}
+            <option value="{{i.id}}">{{ i.get_Estados_display }}, {{ i.Nombre }}</option>
+        {% endfor %}
+        </select><br><br>
+        2.-Quiero generar esta energía cada:
+        {% if per == 0 %}
+        <input type="radio" name="ener" value="0" checked/> Mes
+        <input type="radio" name="ener" value="1" /> Bimestre
+        <input type="radio" name="ener" value="2" /> Semestre
+        <input type="radio" name="ener" value="3" /> Año<br><br>
+        {% elif per == 1 %}
+        <input type="radio" name="ener" value="0" /> Mes
+        <input type="radio" name="ener" value="1" checked/> Bimestre
+        <input type="radio" name="ener" value="2" /> Semestre
+        <input type="radio" name="ener" value="3" /> Año<br><br>
+        {% elif per == 2 %}
+        <input type="radio" name="ener" value="0" /> Mes
+        <input type="radio" name="ener" value="1" /> Bimestre
+        <input type="radio" name="ener" value="2" checked/> Semestre
+        <input type="radio" name="ener" value="3" /> Año<br><br>
+        {% else %}
+        <input type="radio" name="ener" value="0" /> Mes
+        <input type="radio" name="ener" value="1" /> Bimestre
+        <input type="radio" name="ener" value="2" /> Semestre
+        <input type="radio" name="ener" value="3" checked/> Año<br><br>
+        {% endif %}
+
+        3.-¿Cuándo quiero que haya mayor generación de energía?:&nbsp;
+        {% if tipo == 0 %}
+        <input type="radio" name="tipo" value="1" /> Primavera
+        <input type="radio" name="tipo" value="2" /> Otoño
+        <input type="radio" name="tipo" value="0" checked/>Anual
+        <input type="hidden" name="cable" value='0.99'><br><br>
+        {% elif tipo == 1 %}
+        <input type="radio" name="tipo" value="1" checked/> Primavera
+        <input type="radio" name="tipo" value="2" /> Otoño
+        <input type="radio" name="tipo" value="0" />Anual
+        <input type="hidden" name="cable" value='0.99'><br><br>
+        {% else %}
+        <input type="radio" name="tipo" value="1" /> Primavera
+        <input type="radio" name="tipo" value="2" checked/> Otoño
+        <input type="radio" name="tipo" value="0" />Anual
+        <input type="hidden" name="cable" value='0.99'><br><br>
+        {% endif %}
+        <div class="centrar"><input type="submit" value="Enviar" id="btn_s" /></div>
+        </form>
+    </p>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <section id="contenido1">
+            <h1> Video tutorial</h1>
+            <article id="principal">
+                <div id="videoWrapper" align="left">
+                    <img src="http://solarbeam.mx/static/grafica2.jpg" style="max-width:600px;height:auto;">
+                </div>
+            </article>
+        </section>
+{% endblock %}

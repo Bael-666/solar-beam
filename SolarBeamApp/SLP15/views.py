@@ -4,7 +4,7 @@ import SLP2015, convert, resul, getNodes
 from pulp import *
 from datetime import datetime
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 # Create your views here.
 
 def index(request):
@@ -56,7 +56,7 @@ def getNode(request):
         jsonId = json.loads(idRequest)
         idRegion = jsonId['idRegion']
         result = getNodes.getNodes(idRegion)
-        return JsonResponse(result)
+        return JsonResponse(result, safe = False)
     else:
         html = '<p>This is not ajax</p>'      
         return HttpResponse(html)

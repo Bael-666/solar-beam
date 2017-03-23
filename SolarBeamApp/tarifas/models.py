@@ -16,6 +16,11 @@ class Estados(models.Model):
     def __str__(self):
         return self.Estados
 
+class Anio(models.Model):
+    Anio = models.IntegerField(default = 2000)
+    def __str__(self):
+        return str(self.Anio)
+
 class Meses(models.Model):
     Meses = models.CharField(max_length=50)
     Dias = models.IntegerField(default = 30)
@@ -34,8 +39,21 @@ class Tarifa1x(models.Model):
     CInter_Medio = models.FloatField(default = 0)
     CExcedente = models.FloatField(default = 0)
     DAC = models.IntegerField(default = 0)
+    Anio = models.ForeignKey(Anio, blank=True, null=True)
     def __str__(self):
         return self.Nombre
+
+class Tarifa2(models.Model):
+    Mes = models.ForeignKey(Meses, blank=True, null=True)
+    Anio = models.ForeignKey(Anio, blank=True, null=True)
+    Basico = models.FloatField(default = 0)
+    Inter = models.FloatField(default = 0)
+    Excedente = models.FloatField(default = 0)
+    CBasico = models.FloatField(default = 50)
+    CInter = models.FloatField(default = 50)
+    Cargofijo = models.FloatField(default = 60)
+    def __unicode__(self):
+        return '%s %s' % ((str(self.Mes)), str(self.Anio))
 
 class Ciudades(models.Model):
     Nombre = models.CharField(max_length=200)
@@ -49,35 +67,10 @@ class Ciudades(models.Model):
 class DAC(models.Model):
     Fijo = models.FloatField(default = 0)
     AreaCont = models.ForeignKey(AreasControl)
-    Temp = models.ForeignKey(Temporada, blank=True, null=True)
-    Costo_kWh= models.FloatField(default = 0)
-    Anio = models.FloatField(default = 0)
+    Costo_kWh_verano= models.FloatField(default = 0)
+    Costo_kWh_fverano= models.FloatField(default = 0)
+    Anio = models.ForeignKey(Anio, blank=True, null=True)
     Mes = models.ForeignKey(Meses, blank=True, null=True)
-    def __str__(self):
-        return str(self.id)
+    def __unicode__(self):
+        return '%s %s %s' % (str(self.AreaCont), str(self.Mes), str(self.Anio))
 
-# class Tienda(models.Model):
-#     Tienda = models.CharField(max_length=200)
-#     demand = models.IntegerField(default = 0)
-#     def __str__(self):
-#         return self.Tienda
-
-# class Demanda(models.Model):
-#     cantidad = models.FloatField(null = True, blank = True)
-#     costo = models.IntegerField(default = 0)
-#     ruta = models.CharField(max_length=200)
-#     fabric = models.ForeignKey(Fabrica)
-#     tiend = models.ForeignKey(Tienda)
-#     def __str__(self):
-#         return self.ruta
-
-# class Whiskas(models.Model):
-#     animal = models.CharField(max_length=200)
-#     prot = models.FloatField(default = 0)
-#     cost = models.FloatField(default = 0)
-#     fat = models.FloatField(default = 0)
-#     fibre = models.FloatField(default = 0)
-#     salt = models.FloatField(default = 0)
-#     def __str__(self):
-#         return self.animal
-# # Create your models here.

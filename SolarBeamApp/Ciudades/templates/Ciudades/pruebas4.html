@@ -1,0 +1,74 @@
+{% extends "Ciudades/pruebas.html" %}
+{% load staticfiles %}
+
+{% block title %}Solarbeam{% endblock %}
+{% block sidebar %}
+        <h1>Solarbeam 1.0</h1>
+            <form name = 'entr' onsubmit="return validateForm()" action="reporte/" method="post" >
+        {% csrf_token %}
+        1.-Quiero generar <input type="number" step="any" name="demanda" style="width: 6em" value="{{ kwhanor }}" required/> Killowatts-hora (Kwh) &nbsp;en la ciudad de:&nbsp;<select name="Ciudad">
+        {% for i in ciudades %}
+            <option value="{{i.id}}">{{ i.get_Estados_display }}, {{ i.Nombre }}</option>
+        {% endfor %}
+        </select><br><br>
+        2.-Quiero generar esta energía cada:
+        <input type="radio" name="ener" value="0" checked/> Mes
+        <input type="radio" name="ener" value="1" /> Bimestre
+        <input type="radio" name="ener" value="2" /> Semestre
+        <input type="radio" name="ener" value="3" /> Año<br><br>
+
+        3.-¿Cuándo quiero que haya mayor generación de energía?:&nbsp;
+
+        <input type="radio" name="tipo" value="1" /> Primavera
+        <input type="radio" name="tipo" value="2" /> Otoño
+        <input type="radio" name="tipo" value="0" checked/>Anual
+        <input type="hidden" name="cable" value='0.99'><br><br>
+
+        4.- Quiero utilizar paneles    
+        <select name="Panel">     
+        {% for i in panel %}
+            <option value="{{i.id}}">{{ i.get_Marca_display }}{{ i.Marca}}, {{ i.Modelo }}</option>
+        {% endfor %}
+        </select>
+        con un inversores 
+        <select name="Inversor">
+        {% for i in inver %}
+            <option value="{{i.id}}">{{ i.get_Marca_display }}{{ i.Marca}}, {{ i.Modelo }}</option>
+        {% endfor %}
+        </select><br><br>
+        <div class="centrar"><input type="submit" value="Enviar" id="btn_s" /></div>
+
+        </form>
+{% endblock %}
+{% block content %}
+    <section id="contenido1">
+            <h2>Aprende como alimentar tu casa con paneles solares</h2>
+        <article id="principal">
+            <div id="list2">
+            <table>
+                    <tr>
+                        <td><img src="{% static 'imagenes/ESPECIFICO2.png' %}" style="max-width:100%;height:auto;"></td>
+                        <td style="padding:1.5em;">Los cálculos son con parámetros de energía y temperatura reales para cada ciudad</td>
+
+                    </tr>
+                    <tr>
+                        <td><img src="{% static 'imagenes/TECNICO2.png' %}" style="max-width:100%;height:auto;"></td>
+                        <td style="padding:1.5em;">Se toman en cuenta aparatos reales para dimensionar el funcionamiento del campo solar</td>
+
+                    </tr>
+                    <tr>
+                        <td><img src="{% static 'imagenes/INFORMATIVO2.png' %}" style="max-width:100%;height:auto;"></td>
+                        <td style="padding:1.5em;">Te mostramos los posibles beneficios y ahorros al implementar una instalación solar fotovoltaica</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static 'imagenes/ACCESIBLE2.png' %}" style="max-width:100%;height:auto;"></td>
+                        <td style="padding:1.5em;">Nuestra aplicación es libre y gratuita para cualquier usuario de internet</td>
+                    </tr>
+            </table>
+            </div>
+
+
+        </article>
+
+    </section>
+{% endblock %}

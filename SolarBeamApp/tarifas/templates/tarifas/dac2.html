@@ -1,0 +1,30 @@
+{% extends "app/layout.html" %}
+{% block title %}Tarifas de Alto Consumo residencial{% endblock %}
+{% load static %}
+{% block content %}
+<h1 align = "center">Tarifas de Alto Consumo {{acont}}</h1>
+<div class="row form-group" align = "center">
+<img src="{% static 'tarifas/tarifadac_' %}{{acont}}.png" alt="Grafica"/>
+</div>
+
+<div class="row form-group" align = "center">
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Año</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Mes</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Cargo fijo</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Tarifa de Verano</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">Tarifa fuera de Verano</span>
+    </div>
+
+{% for i in dac %}
+    {% csrf_token %}
+    <div class="row form-group" align = "center">
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Anio}}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Mes }}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Fijo }}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Costo_kWh_verano}}</span>
+            <span class="col-md-2 col-sm-2 col-xs-2 col-lg-2">{{ i.Costo_kWh_fverano }}</span>
+            
+    </div>
+
+{% endfor %}
+{% endblock %}

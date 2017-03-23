@@ -1,0 +1,56 @@
+{% comment %}
+{% load google_analytics %}
+{% endcomment %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Ciudades/style.css' %}" />
+    <title>{% block title %}SolarBeam1.0{% endblock %}</title>
+    <meta charset="utf-8"/>
+    <meta description="Solar Beam es una aplicación web para el dimensionado de campos solares fotovoltaicos en México"/>
+    <link rel="shortcut icon" href="{% static 'imagenes/Logocasifinal.png' %}" />
+  {% comment %}  {% google_analytics %} {% endcomment %}
+</head>
+
+<body>
+    <section id="cabecera">
+        <a href="/">
+        <header>
+        <div style="
+            margin-top:1em;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -khtml-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            width: 200px;
+            height: 220px;
+            background: url('{% static 'imagenes/logo.png' %}');
+            background-size: 200px auto;
+            background-repeat: no-repeat;"/>
+        </div>
+        </header>
+        </a>
+        <aside>
+            {% block sidebar %}
+
+            {% endblock %}
+        </aside>
+
+
+
+	</section>
+	<section id="contenido">
+	    {% block content %}
+
+        {% endblock %}
+	</section>
+
+    <footer>
+        {% block footer %}
+
+        {% endblock %}
+
+    </footer>
+</body>
+</html>

@@ -10,7 +10,8 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = (
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    '192.168.15.13'
 )
 
 ADMINS = (
@@ -151,9 +152,12 @@ INSTALLED_APPS = (
     'app',
     'modelo1.apps.Modelo1Config',
     'SLP15.apps.Slp15Config',
+    'documentos.apps.DocumentosConfig',
     'tarifas.apps.TarifasConfig',
+    'Ciudades.apps.CiudadesConfig',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'django.contrib.humanize',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
