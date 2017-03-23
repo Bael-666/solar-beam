@@ -6,10 +6,10 @@
     <title>{{ title }} - SolarBeam</title>
     {% load staticfiles %}
     <!--<link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
-    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />-->
     <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
     <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+    <script src="{% static 'app/scripts/alert.js' %}"></script>
 </head>
 
 <body>
@@ -36,6 +36,17 @@
 
     <div class="container body-content">
         {% block content %}{% endblock %}
+        <div id="alert" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="margin-top: -15px;">&times;</button>
+                    </div>
+                    <div class="modal-body" style="padding-bottom: 40px">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <hr/>
