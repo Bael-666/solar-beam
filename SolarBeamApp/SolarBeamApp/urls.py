@@ -39,6 +39,7 @@ urlpatterns = [
             'next_page': '/',
         },
         name='logout'),
+#    url(r'^reset/$', views.reset, name="password_reset"),
     url(r'^modelo1/', include('modelo1.urls')),
     url(r'^slp2015/', include('SLP15.urls')),
     url(r'^tarifas/', include('tarifas.urls')),
@@ -50,4 +51,5 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^/slp2015/getNode/$', getNode, name="getNode")
+    url('^', include('django.contrib.auth.urls')),
 ]

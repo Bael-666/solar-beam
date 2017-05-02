@@ -1,0 +1,57 @@
+{% extends "app/layout.html" %}
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<h1>Simulador</h1>
+
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="alta/" method="post" >
+    {% csrf_token %}
+    <div class="row form-group">
+        <span class="col-md-5 col-sm-5 col-xs-5 col-lg-5">1.- Quiero generar con una central con Capacidad de</span>
+        <div class="col-md-2">
+            <input type="number" step="any" id="capapl" name="capapl" class="form-control" value="{{ capapl }}" min="0" required/>
+        </div>
+        <span class="col-md-1 col-sm-1 col-lg-1 col-xs-1"> MW</span>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">2.- Regi&oacute;n de transmisi&oacute;n:</span>
+        <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+            <select class="form-control" name="region" id="region">
+                <option value="0">Selecciona una opci&oacute;n</option>
+                {% for i in regionof %}
+                    <option value="{{i.id}}">{{ i.get_nombrereg_display}} {{ i.nombrereg }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">3.- Punto de interconexi&oacute;n:</span>
+        <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+            <select class="form-control" name="nodo" id="nodo" disabled>
+                <option value="0">Selecciona una opci&oacute;n</option>
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-4 col-sm-4 col-xs-4 col-lg-4"> 4.- Mi central cuenta con prelaci&oacute;n:</span>
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <select class="form-control" name="prelacion" id="cenPre"> 
+                <option value="0">Si</option>
+                <option value="1">No</option>
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">5.- El nombre de mi central es:</span>
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+            <input type="text" class="form-control" step="any" name="nombre_cen" id="nameCen" value="{{ nombre_cen }}" required/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <input type="submit" class="form-control btn-primary" value="Enviar" id="btnSend" />
+        </div>
+    </div>
+</form>
+<script src="{% static 'SLP2015/simulador.js' %}"></script>
+{% endblock %}

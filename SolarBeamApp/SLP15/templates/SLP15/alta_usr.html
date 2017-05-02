@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<h1>Simulador</h1>
+
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="/slp2015/alta_usr" method="post" >
+    {% csrf_token %}
+    <div class="row form-group">
+        <span class="col-md-5 col-sm-5 col-xs-5 col-lg-5">Usuario creado correctamente {{user.id}}</span>
+        
+    </div>
+</form>
+{% endblock %}

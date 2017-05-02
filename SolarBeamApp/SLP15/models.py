@@ -188,3 +188,81 @@ class Zonaof(models.Model):
     limeeae = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
     def __str__(self):
         return str(self.id)
+
+class Centrales_sim(models.Model):
+    nombre_cen = models.TextField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    central = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    capapl = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    zpcen = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    zgcen = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    zprcen = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    zicen = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    gen = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    prelacion = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    zpcen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
+    zgcen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
+    zprcen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
+    zicen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
+    cent_acept = models.TextField(max_length=1, blank=True, null=True)  # Field name made lowercase.
+    uc = models.IntegerField(blank=True, null=True)
+    def __str__(self):
+        return str(self.id)
+
+class CentralOv_sim(models.Model):
+    gen = models.IntegerField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    paquetes = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    central = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    def __str__(self):
+        return str(self.id)
+
+class Paqgen_sim(models.Model):
+    paquetes = models.IntegerField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    gen = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    capapl = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    gpot = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    geea = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    gcel = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    ppaq = models.FloatField(blank=True, null=True)  # Field name made lowercase.
+    firrant = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    firrdes = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    sint = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    zonin = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    rin = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    nin = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    prelacion = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    factordevesp = models.FloatField(blank=True, null=True)  # Field name made lowercase.
+    pct20 = models.FloatField(blank=True, null=True)  # Field name made lowercase.
+    vpnindexdls = models.FloatField(blank=True, null=True)  # Field name made lowercase.
+    vpnindexpesos = models.FloatField(blank=True, null=True)  # Field name made lowercase.
+    indexusd = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    idejec = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    nppaq = models.FloatField(blank=True, null=True)  # Field name made lowercase.
+    ev_ppajus = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    ev_pporig = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    aceptado = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    nin2 = models.BigIntegerField(blank=True, null=True)  # Field name made lowercase.
+    rin2 = models.BigIntegerField(blank=True, null=True)  # Field name made lowercase.
+    zonin2 = models.BigIntegerField(blank=True, null=True)  # Field name made lowercase.
+    sint2 = models.BigIntegerField(blank=True, null=True)  # Field name made lowercase.
+    zongenf = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    fechaap = models.TextField(blank=True, null=True)  # Field name made lowercase.
+    fechaen = models.TextField(blank=True, null=True)  # Field name made lowercase.
+    up = models.IntegerField(blank=True, null=True) 
+    def __str__(self):
+        return str(self.id)
+
+#@python_2_unicode_compatible
+class Paqin_sim(models.Model):
+    gen = models.IntegerField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    paquetes = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    paquetes2 = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    def __str__(self):
+        return str(self.id)
+
+#@python_2_unicode_compatible
+class Paqexc_sim(models.Model):
+    gen = models.IntegerField(blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    conpaqexc = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    paquetes = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
+    def __str__(self):
+        return str(self.id)

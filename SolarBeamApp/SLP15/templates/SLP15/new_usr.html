@@ -1,0 +1,27 @@
+{% extends "app/layout.html" %}
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<h1>Simulador</h1>
+
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="/slp2015/alta_usr/" method="post" >
+    {% csrf_token %}
+    <div class="row form-group">
+        <span class="col-md-5 col-sm-5 col-xs-5 col-lg-5">1.- Correo electrónico</span>
+        <div class="col-md-2">
+            <input type="text" step="any" id="email" name="email" class="form-control" value="{{ email }}" required/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-5 col-sm-5 col-xs-5 col-lg-5">2.- Password</span>
+        <div class="col-md-2">
+            <input type="password" step="any" id="password" name="password" class="form-control" value="{{ password }}" required/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <input type="submit" class="form-control btn-primary" value="Enviar" id="btnSend" />
+        </div>
+    </div>
+</form>
+{% endblock %}
