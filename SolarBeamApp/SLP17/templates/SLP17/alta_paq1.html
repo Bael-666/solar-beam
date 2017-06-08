@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<h3>Elija la(s) central(es) asociada a la Oferta de Venta</h3>
+
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="{% url 'alta_paq2' %}" method="post" >
+    {% csrf_token %}
+    <div class="row form-group">
+        <table> 
+         <tr>
+            <td></td> <td>   Número de Central   </td><td>    Nombre de la central </td><td> Capacidad de la Central en MW    </td>
+         </tr>
+            {% for i in cent %}
+            <tr>       
+                <td> <input type="checkbox" name= "checks[]" value= "{{ i.id }}"></td><td> {{i.central}} </td><td> {{i.nombre_cen}} </td><td> {{i.capapl}} </td>
+            </tr>
+            {% endfor %}
+         </table>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <input type="submit" class="form-control btn-primary" value="Enviar" id="btnSend" />
+        </div>
+    </div>
+</form>
+<script src="{% static 'SLP2015/simulador.js' %}"></script>
+{% endblock %}

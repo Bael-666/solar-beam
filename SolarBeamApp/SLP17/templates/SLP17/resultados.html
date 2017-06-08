@@ -1,0 +1,37 @@
+{% extends "app/layout.html" %}
+{% block content %}
+{% if slp2015 %}
+<p>
+    <table align ="center">
+        <tr><td>{{ status }}</td></tr>
+        <tr><td> Resultado Simulacion funcion objetivo </td><td> {{ fob }} </td><td> Resultado Cenace funcion objetivo </td><td> 2459051813 </td></tr>
+        <tr><td># Paquete </td><td> Resultado simulacion </td><td> Resultado CENACE </td><td> Licitante </td><td> Oferta </td><td> Potencia ofertada </td><td> Energia ofertada </td><td> Cels Ofertados </td><td> Precio ofertado </td>
+        {% for j in Up %}  
+               
+            <tr> 
+                {% for i in j %}
+                   <td>{{ i }}  </td>
+                 {% endfor %}
+            </tr>
+        
+        {% endfor %}
+        
+    </table>
+    <br><br>
+    <table align ="center">
+        <tr><td># OFerta </td><td> Comprador </td><td> Oferta </td><td> Compra de Potencia </td><td> Oferta potencia </td><td> Compra energia </td><td> Oferta energia </td><td> Compra Cel </td><td> Oferta Cel </td>
+        {% for j in Compra %}  
+               <tr>
+                   {% for i in j %}
+                       <td>{{ i }}  </td>
+                   {% endfor %}
+              </tr>
+              
+        {% endfor %} 
+        
+    </table>
+</p>
+{% else %}
+    <p>No hay comida</p>
+{% endif %}
+{% endblock %}

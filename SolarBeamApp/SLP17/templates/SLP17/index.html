@@ -1,0 +1,20 @@
+{% extends "app/layout.html" %}
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% block content %}
+<h1 align = center>Subasta de Largo Plazo 2015</h1>
+ <div class="row form-group">
+        Subasta sin modificaciones <br>
+    <form name = 'entr' onsubmit="return validateForm()" action="resultados/" method="post" >
+        {% csrf_token %}
+    <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2"><input type="submit" class="form-control btn-primary" value="Enviar" id="btn_s" /></div>
+        </form>
+ </div>
+ <br>
+ <div class="row form-group">
+    Simulador <br>
+    <form name = 'entra' onsubmit="return validateForm()" action="simulador/" method="post" >
+        {% csrf_token %}
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2"><input type="submit" class="form-control btn-primary" value="Enviar" id="btn_s" /></div>
+        </form>
+ </div>
+{% endblock %}

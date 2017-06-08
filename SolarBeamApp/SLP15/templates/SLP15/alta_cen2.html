@@ -1,0 +1,24 @@
+{% extends "app/layout.html" %}
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<h1>Central dada de alta</h1>
+
+ <div class="row form-group">
+        <div class="col-md-2">
+            <a href="{% url 'alta_cen' %}"><input type="submit" value="Alta de central" class="btn btn-default"/></a>
+        </div>
+        <div class="col-md-2">
+            <a href="{% url 'alta_paq1' %}"><input type="submit" value="Alta de Oferta" class="btn btn-default"/></a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'password_reset' %}"><input type="submit" value="Ofertas condicionadas" class="btn btn-default"/></a>
+        </div>
+        <div class="col-md-2">
+            <a href="{% url 'password_reset' %}"><input type="submit" value="Ofertas excluyentes" class="btn btn-default"/></a>
+        </div>
+        <div class="col-md-2">
+            <a href="{% url 'simulador' %}"><input type="submit" value="Ofertas excluyentes" class="btn btn-default"/></a>
+        </div>
+    </div>
+{% endblock %}

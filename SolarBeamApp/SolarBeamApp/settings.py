@@ -12,7 +12,8 @@ ALLOWED_HOSTS = (
     'localhost',
     '127.0.0.1',
     '192.168.15.13',
-    '192.168.15.17'
+    '192.168.15.17',
+    '192.168.1.64'
 )
 
 ADMINS = (
@@ -153,6 +154,7 @@ INSTALLED_APPS = (
     'app',
     'modelo1.apps.Modelo1Config',
     'SLP15.apps.Slp15Config',
+    'SLP17.apps.Slp17Config',
     'documentos.apps.DocumentosConfig',
     'tarifas.apps.TarifasConfig',
     'Ciudades.apps.CiudadesConfig',

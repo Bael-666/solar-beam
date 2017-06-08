@@ -7,10 +7,10 @@
     {% csrf_token %}
     <div class="row form-group">
         <div class="col-md-2">
-            <a href="{% url 'alta_cen15' %}"><input type="submit" value="Alta de central" class="btn btn-default"/></a>
+            <a href="{% url 'alta_cen' %}"><input type="submit" value="Alta de central" class="btn btn-default"/></a>
         </div>
         <div class="col-md-2">
-            <a href="{% url 'alta_paq115' %}"><input type="submit" value="Alta de Oferta" class="btn btn-default"/></a>
+            <a href="{% url 'alta_paq1' %}"><input type="submit" value="Alta de Oferta" class="btn btn-default"/></a>
         </div>
         <div class="col-md-4">
             <a href="{% url 'password_reset' %}"><input type="submit" value="Ofertas condicionadas" class="btn btn-default"/></a>
@@ -37,19 +37,12 @@
         <h3>No hay Centrales dadas de alta</h3>
     {% endif %}
     {% if paq %}
-         <h3>Ofertas de venta dadas de alta</h3>
-         <table> 
-         <tr>
-             <td>   Numero de Oferta   </td><td>    Potencia ofertada  </td><td> Capacidad de la OFerta en MW    </td>
-         </tr>
-            {% for i in paq %}
-            <tr>
-                 {% for j in i %}
-                 <td>{{ j }}  </td>
+        <h3>Ofertas de venta dadas de alta</h3>
+        <tr>
+             {% for i in paq %}
+                 <td>{{ i }}  </td>
              {% endfor %}
-            </tr>
-            {% endfor %}
-         </table>
+         </tr>
     {% else %}
         <h3>No hay Ofertas de venta dadas de alta</h3>
     {% endif %}

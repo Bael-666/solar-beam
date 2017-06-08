@@ -1,0 +1,43 @@
+{% extends "app/layout.html" %}
+{% block title %}Primera Subasta de Largo Plazo SLP2015{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<h3>Indique la cantidad de productos </h3>
+
+<form name="frmSimulator" id="frmSimulator" onsubmit="return validateForm()" action="{% url 'alta_paq315' %}" method="post" >
+    {% csrf_token %}
+    <div class="row form-group">
+        <span class="col-md-4 col-sm-4 col-xs-4 col-lg-4"> 1.- Fecha de entrega de productos</span>
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <select class="form-control" name="fech" id="fech"> 
+                <option value="0">Estandar</option>
+                <option value="1">Irregular anterior</option>
+                <option value="2">Irregular posterior</option>
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">2.-Cantidad de Potencia Ofertada (MW)</span>
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+            <input type="text" class="form-control" step="any" name="GPOT" id="GPOT" value="{{ GPOT }}" required/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">3.-Cantidad de Energía Eléctrica Acumulable (MWh)</span>
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+            <input type="text" class="form-control" step="any" name="GEEA" id="GEEA" value="{{ GEEA }}" required/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <span class="col-md-3 col-sm-3 col-xs-3 col-lg-3">4.-Cantidad de Certificados de Energía Limpia (CEL)</span>
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+            <input type="text" class="form-control" step="any" name="GCEL" id="GCEL" value="{{ GCEL }}" required/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <input type="submit" class="form-control btn-primary" value="Enviar" id="btnSend" />
+        </div>
+    </div>
+</form>
+{% endblock %}

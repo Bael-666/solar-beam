@@ -42,6 +42,7 @@ urlpatterns = [
 #    url(r'^reset/$', views.reset, name="password_reset"),
     url(r'^modelo1/', include('modelo1.urls')),
     url(r'^slp2015/', include('SLP15.urls')),
+    url(r'^slp2017/', include('SLP17.urls')),
     url(r'^tarifas/', include('tarifas.urls')),
     url(r'^Solarbeam1.0/', include('Ciudades.urls')),
     url(r'^docs/', include('documentos.urls')),

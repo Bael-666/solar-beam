@@ -22,6 +22,9 @@ class Centrales(models.Model):
     zprcen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
     zicen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
     cent_acept = models.TextField(max_length=1, blank=True, null=True)  # Field name made lowercase.
+    tipo_cent = models.TextField(blank=True, null=True)
+    fac_pot = models.FloatField(blank=True, null=True)
+    limp_cen = models.FloatField(blank=True, null=True)
     uc = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return str(self.id)
@@ -204,9 +207,6 @@ class Centrales_sim(models.Model):
     zprcen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
     zicen2 = models.TextField(blank=True, null=True)  # Field name made lowercase.
     cent_acept = models.TextField(max_length=1, blank=True, null=True)  # Field name made lowercase.
-    tipo_cent = models.TextField(blank=True, null=True)
-    fac_pot = models.FloatField(blank=True, null=True)
-    limp_cen = models.FloatField(blank=True, null=True)
     uc = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return str(self.id)
